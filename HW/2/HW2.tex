@@ -43,10 +43,11 @@ Consider \(f(x) = \frac{1}{x + 1}\)
           \end{align*}
     \item Estimate the worst case error when using \(P_3(x)\) to approximate \(f(x)\) for \(\vert x \vert \leq 10^{-4}\)
           \begin{align*}
-              E_4(\vert x \vert             & \leq 10^{-4}) \leq E_4(10^{-4})    \\
-              E_4(10^{-4})                  & = \frac{(10^{-4})^4}{(C + 1)^5}    \\
-              = \frac{10^{-16}}{(C + 1)^5}  & = \frac{10^{-16}}{(10^{-4} + 1)^5} \\
-              = \frac{10^{-16}}{1.0001 ^ 5} & \approx 10^{-16}                   \\
+              E_4(\vert x \vert             & \leq 10^{-4}) \leq E_4(\pm 10^{-4}) \\
+              C                             & \in [-10^{-4}, 10^{-4}]             \\
+              E_4(10^{-4})                  & = \frac{(10^{-4})^4}{(C + 1)^5}     \\
+              = \frac{10^{-16}}{(C + 1)^5}  & = \frac{10^{-16}}{(-10^{-4} + 1)^5} \\
+              = \frac{10^{-16}}{0.9998 ^ 5} & \approx 10^{-16}                    \\
           \end{align*}
 \end{enumerate}
 
