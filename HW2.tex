@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+
+\title{\vspace{-5ex}M/CS 375 HW 2}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\section*{Example 4}
+Consider \(f(x) = \frac{1}{x + 1}\)
+
+\begin{enumerate}[label=(\alph*)]
+    \item Find the degree 3 Taylor polynomial for \(f\) at \(x_0 = 0,\ P_3(x)\).
+          \begin{align*}
+              f(x)       & = \frac{1}{x + 1} = (x + 1)^{-1} \\
+              f^{(1)}(x) & = -(x + 1)^{-2}                  \\
+              f^{(2)}(x) & = 2(x + 1)^{-3}                  \\
+              f^{(3)}(x) & = -6(x + 1)^{-4}                 \\
+              f^{(4)}(x) & = 24(x + 1)^{-5}
+          \end{align*}
+          \begin{align*}
+              P_3(x) & = f(x_0) + f'(x_0)(x - x_0) + \frac{f^{(2)}(x_0)}{2!}(x - x_0)^2 + \frac{f^{(3)}(x_0)}{3!}(x - x_0)^3 \\
+                     & = f(0) + f'(0)(x) + \frac{f^{(2)}(0)}{2}(x)^2 + \frac{f^{(3)}(0)}{6}(x)^3                             \\
+                     & = 1 + (-1)(x) + \frac{2}{2}(x)^2\ - \frac{6}{6}(x)^3                                                  \\
+                     & = 1 - x + x^2 - x^3
+          \end{align*}
+    \item Find the Taylor remainder, \(E_4\).
+          \begin{align*}
+              E_{k+1} & = \frac{f^{(k+1)}(C)}{(k+1)!}(x - x_0)^{k+1} \\
+              E_4     & = \frac{f^{(4)}(C)}{4!}(x - x_0)^4           \\
+                      & = \frac{24(C + 1)^{-5}}{24}(x-0)^4           \\
+                      & = (C+1)^{-5}(x)^4                            \\
+                      & = \frac{x^4}{(C+1)^5}, C \in [0, x]
+          \end{align*}
+    \item Estimate the worse case error when using \(P_3(x)\) to approximate \(f(x)\) for \(x = 0.02\).
+          \begin{align*}
+              E_{4}(0.02) & = \frac{0.02^4}{(C + 1)^5} = \frac{1.6 \cdot 10^{-7}}{(C + 1) ^ 5}                                        \\
+                          & < \frac{1.6 \cdot 10^{-7}}{(0.02 + 1) ^ 5} = \frac{1.6 \cdot 10^{-7}}{1.02 ^ 5} \approx 1.6 \cdot 10^{-7} \\
+          \end{align*}
+    \item Estimate the worst case error when using \(P_3(x)\) to approximate \(f(x)\) for \(\vert x \vert \leq 10^{-4}\)
+          \begin{align*}
+              E_4(\vert x \vert             & \leq 10^{-4}) \leq E_4(10^{-4})    \\
+              E_4(10^{-4})                  & = \frac{(10^{-4})^4}{(C + 1)^5}    \\
+              = \frac{10^{-16}}{(C + 1)^5}  & = \frac{10^{-16}}{(10^{-4} + 1)^5} \\
+              = \frac{10^{-16}}{1.0001 ^ 5} & \approx 10^{-16}                   \\
+          \end{align*}
+\end{enumerate}
+
+\end{document}
