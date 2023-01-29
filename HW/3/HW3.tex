@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+
+\title{\vspace{-5ex}M/CS 375 HW 3}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\section*{1.1.4}
+Find an approximate root within 1/8th of the true root for
+\begin{align*}
+    sin(x) = 6x + 5 \\
+    f(x) = sin(x) - 6x - 5
+\end{align*}
+
+\begin{enumerate}
+    \item Calculate the max distance between \(a\) and \(b\)
+          \begin{align*}
+              \frac{b-a}{2^{n+1}} < \frac{1}{8} \\
+              \frac{b-a}{2^3} < \frac{1}{8}     \\
+              \frac{b-a}{8} < \frac{1}{8}       \\
+              b - a < 1                         \\
+          \end{align*}
+    \item Let's set \(a = -1, b = 0\)
+    \item Check if bisection can be done:
+          \begin{align*}
+              f(a)            & = sin(-1) - 6(-1) - 5 \\
+              f(a)            & > 0                   \\
+              f(b)            & = sin(0) - 6(0) - 5   \\
+              f(b)            & < 0                   \\
+              f(a) \cdot f(b) & < 0\ \checkmark
+          \end{align*}
+    \item Step through bisection twice
+          \begin{center}
+              \begin{tabular}{c|c|c|c|c}
+                  Steps & \(a\) & \(b\) & \(c\)  & \(f(c)\) \\
+                  \hline
+                  0     & -1    & 0     & -0.5   & -2.48    \\
+                  1     & -1    & -0.5  & -0.75  & -1.18    \\
+                  2     & -1    & -0.75 & -0.875 & -0.52    \\
+              \end{tabular}
+          \end{center}
+    \item The approximate root is \(x \approx -0.875\)
+\end{enumerate}
+
+\end{document}
