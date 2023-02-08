@@ -17,27 +17,27 @@
 \begin{enumerate}
     \item Taylor Polynomials
           \begin{enumerate}[label=(\alph*)]
-                \item Degree 5 Taylor Polynomial for \(f(x) = cos x\) where \(x_0 = 0\).
-                      \begin{align*}
-                          P_5(x) &= \sum_{k=0}^5 \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k \\
-                          &= cos(0) - sin(0)x - \frac{cos(0)x^2}{2} + \frac{sin(0)x^3}{6} - \frac{cos(0)x^4}{24} + \frac{sin(0)x^5}{120} \\
-                          &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} \\
-                      \end{align*}
-                \item Worst-case error for \(x\) in \(\lbrack -\frac{\pi}{4}, \frac{\pi}{4}\rbrack\)
-                      \begin{align*}
-                        E_{5+1} &= \frac{1}{6!}f^{(6)}(c)(x)^6 \\
-                        &= \frac{1}{720} -cos(c)(x)^6 \\
-                        &= \frac{\frac{\pi}{4}^6}{720}cos(c) \\
-                        &< \frac{0.2397}{720} < 3 \times 10^{-4}
-                      \end{align*}
-                \includegraphics[scale=0.50]{cosgraph.png}
-                \includegraphics[scale=0.5]{cosgraph_zoomed.png}
+              \item Degree 5 Taylor Polynomial for \(f(x) = cos x\) where \(x_0 = 0\).
+                    \begin{align*}
+                        P_5(x) & = \sum_{k=0}^5 \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k                                                               \\
+                               & = cos(0) - sin(0)x - \frac{cos(0)x^2}{2} + \frac{sin(0)x^3}{6} - \frac{cos(0)x^4}{24} + \frac{sin(0)x^5}{120} \\
+                               & = 1 - \frac{x^2}{2!} + \frac{x^4}{4!}                                                                         \\
+                    \end{align*}
+              \item Worst-case error for \(x\) in \(\lbrack -\frac{\pi}{4}, \frac{\pi}{4}\rbrack\)
+                    \begin{align*}
+                        E_{5+1} & = \frac{1}{6!}f^{(6)}(c)(x)^6           \\
+                                & = \frac{1}{720} -cos(c)(x)^6            \\
+                                & = \frac{\frac{\pi}{4}^6}{720}cos(c)     \\
+                                & < \frac{0.2397}{720} < 3 \times 10^{-4}
+                    \end{align*}
+                    \includegraphics[scale=0.50]{cosgraph.png}
+                    \includegraphics[scale=0.5]{cosgraph_zoomed.png}
           \end{enumerate}
-    \item MatLab 
-    \lstset{language=MatLab,basicstyle=\small\ttfamily}
+    \item MatLab
+          \lstset{language=MatLab,basicstyle=\small\ttfamily}
           \begin{enumerate}[label=(\alph*)]
-            \item \(f(x) = 230x^4 + 18x^3 + 9x^2 - 221x - 9;\ [0, 1]\)
-\begin{lstlisting}N: 1.893157e+01
+              \item \(f(x) = 230x^4 + 18x^3 + 9x^2 - 221x - 9;\ [0, 1]\)
+                    \begin{lstlisting}N: 1.893157e+01
 Iterating 19 times
  k   A          B          c           f(c)
  0:  0.0000000  1.0000000  0.5000000 -100.6250000
@@ -65,12 +65,12 @@ ans =
 
    0.962397575378418
             \end{lstlisting}
-        \item \(f(x) = 1 + ln(1+x^2);\ [0, 1]\)
-        \begin{lstlisting}
+              \item \(f(x) = 1 + ln(1+x^2);\ [0, 1]\)
+                    \begin{lstlisting}
 1.000000 and 1.693147 must be opposite signs
         \end{lstlisting}
-        \item \(f(x) = e^x + 2^{-x} + 2cosx - 6;\ [1, 2]\)
-        \begin{lstlisting}
+              \item \(f(x) = e^x + 2^{-x} + 2cosx - 6;\ [1, 2]\)
+                    \begin{lstlisting}
 Iterating 19 times
 k   A          B          c           f(c)
 0:  1.0000000  2.0000000  1.5000000  -1.0232831
@@ -98,9 +98,9 @@ ans =
 
     1.829382896423340
         \end{lstlisting}
-    \end{enumerate}
+          \end{enumerate}
     \item Interest Rate
-    \begin{lstlisting}
+          \begin{lstlisting}
 Iterating 12 times
 k   A          B          c           f(c)
 0:  0.0000000  0.0500000  0.0250000 -535.4359178
