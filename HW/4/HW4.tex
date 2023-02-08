@@ -1,0 +1,30 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+
+\title{\vspace{-5ex}M/CS 375 HW 4}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+Solve \(f(x) = x\) using Newton's iteration with an initial \(x_0 \ne 0\).
+\begin{align*}
+    x_0 & = 0.5                          \\
+    x_1 & = 0.5 - \frac{f(0.5)}{f'(0.5)} \\
+        & = 0.5 - \frac{0.5}{1}          \\
+        & = 0
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+    \item What are the errors \(e_1\) and \(e_2\)?
+          \begin{align*}
+              \lim_{i \to \infty} \frac{e_{i+1}}{e_i^c} = \frac{1}{2}\left|\frac{f''(r)}{f'(r)}\right| \\
+              = \frac{1}{2}\left|\frac{0}{1}\right| = 0                                                \\
+              e_1 = e_2 = 0
+          \end{align*}
+    \item Explain why the result from (a) indicates a faster than linear convergence. \\
+          The error jumping immediately to zero indicates that the error is decreasing faster than linearly.
+\end{enumerate}
+\end{document}
