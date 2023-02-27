@@ -1,0 +1,34 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+
+\title{\vspace{-5ex}M/CS 375 HW 8}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 14}
+Which fixed point iteration converges to \(\sqrt{2}\)?
+\begin{enumerate}[label=(\Alph*)]
+    \item \(x \rightarrow \frac{1}{2}x + \frac{1}{x}\)
+    \begin{align*}
+        \frac{d}{dx} \left( \frac{1}{2}x + \frac{1}{x} \right) = \frac{1}{2} - \frac{1}{x^2} \\
+        x'(\sqrt{2}) = \frac{1}{2} - \frac{1}{2} = 0
+    \end{align*}
+    \item \(x \rightarrow \frac{2}{3}x + \frac{2}{3x}\)
+    \begin{align*}
+        \frac{d}{dx} \left( \frac{2}{3}x + \frac{2}{3x} \right) = \frac{2}{3} - \frac{2}{3x^2} \\
+        x'(\sqrt{2}) = \frac{2}{3} - \frac{2}{6} = \frac{1}{3}
+    \end{align*}
+    \item \(x \rightarrow \frac{3}{4}x + \frac{1}{2x}\)
+    \begin{align*}
+        \frac{d}{dx} \left( \frac{3}{4}x + \frac{1}{2x} \right) = \frac{3}{4} - \frac{1}{2x^2} \\
+        x'(\sqrt{2}) = \frac{3}{4} - \frac{1}{4} = \frac{1}{2}
+    \end{align*}
+    All three fixed point iterations converge to \(\sqrt{2}\), with A being the quickest, B being in the middle, and C being slowest.
+\end{enumerate}
+
+\end{document}
