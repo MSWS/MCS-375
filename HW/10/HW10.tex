@@ -1,0 +1,26 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+
+\title{\vspace{-5ex}M/CS 375 HW 10}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 6}
+Assume that your computer completes a 5000 equation back substitution in 0.005 seconds.
+Use the approximate operation counts \(n^2\) for back substitution and \(2n^3/3\) for elimination to estimate how long it will take to do a complete Gaussian elimination of this size.
+Round your answer to the nearest second.
+
+\begin{align*}
+    \frac{5000^2}{2\cdot5000^3/3} & = \frac{0.005}{x} \\ 
+    \frac{3}{2} \cdot \frac{5000^2}{5000^3} & = \frac{0.005}{x} \\
+    \frac{3x5000^2}{2\cdot5000^3} & =  0.005 \\
+    x & = \frac{2\cdot5000^3\cdot0.005}{3\cdot5000^2} \\
+    x & = 16. \bar{6} \rightarrow 17 \text{ seconds}
+\end{align*}
+
+\end{document}
