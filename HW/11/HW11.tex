@@ -13,11 +13,12 @@
 \section*{Problem 8}
 If a system of 3000 equations in 3000 unknowns can be solved by Gaussian elimination in 5 seconds on a given compouter, how many back substitutions of the same size can be done per second?
 \begin{align*}
-    \frac{x^2}{2\cdot3000^3/3} & = \frac{1}{5} \\
-    \frac{3x^2}{2\cdot3000^3} & = \frac{1}{5} \\
-    3x^2 & = \frac{2\cdot3000^3}{5} \\
-    x^2 & = \frac{2\cdot3000^3}{5\cdot3} \\
-    x & = 60000 \text{ / second}
+    \frac{3000}{5} = 600 \text{ eliminations / second}
+\end{align*}
+\begin{align*}
+    \frac{3000^2}{600} & = \frac{x}{1}                         \\
+    x                  & = 15000 \text{ back subs / second}    \\
+    5 \cdot 15000      & = 75000 \text{ back subs / 5 seconds} \\
 \end{align*}
 
 \end{document}
