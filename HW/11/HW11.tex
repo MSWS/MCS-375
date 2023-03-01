@@ -11,14 +11,17 @@
 \maketitle
 
 \section*{Problem 8}
-If a system of 3000 equations in 3000 unknowns can be solved by Gaussian elimination in 5 seconds on a given compouter, how many back substitutions of the same size can be done per second?
+If a system of 3000 equations in 3000 unknowns can be solved by Gaussian elimination in 5 seconds on a given computer, how many back substitutions of the same size can be done per second?
+
 \begin{align*}
-    \frac{3000}{5} = 600 \text{ eliminations / second}
+    \frac{s_b ^2}{2 \cdot s_e^3 / 3} = \frac{t_b}{t_e} \\
+    s_e = 3000                                         \\
+    t_e = ?                                            \\
+    s_b = 3000                                         \\
+    t_b = 5                                            \\
+    \frac{3000^2}{2 \cdot 3000^3 / 3} = \frac{t_b}{5}  \\
 \end{align*}
-\begin{align*}
-    \frac{3000^2}{600} & = \frac{x}{1}                         \\
-    x                  & = 15000 \text{ back subs / second}    \\
-    5 \cdot 15000      & = 75000 \text{ back subs / 5 seconds} \\
-\end{align*}
+
+Simplifying the above, we get \(t_b = \frac{1}{400}\) seconds, meaning it would take 1/400th of a second to do one back substitution. (I.e: we can do 400 back substitutions / second).
 
 \end{document}
