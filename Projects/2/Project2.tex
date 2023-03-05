@@ -9,7 +9,7 @@
 \graphicspath{.}
 
 \title{\vspace{-5ex}M/CS 375 Project 2}
-\author{Isaac Boaz}
+\author{Isaac Boaz, Cole Yamamura}
 
 \begin{document}
 \maketitle
@@ -27,7 +27,7 @@
             f_1'(x) &= \sqrt[-2/3]{\frac{1}{2} + 3x}\ \\
                     f_1'(r_1) & = -0.18549\ldots - 0.3212\ldots i \\
                     |f_1'(r_1)| & \approx 0.37099 \\
-                    |f_1'(r_1)| & < 1\ \checkmark \\
+                    |f_1'(r_1)| & < 1\, \checkmark \\
         \end{align*}
         \begin{align*}
             f_2'(x) &= -\frac{x}{(x^2-3)^2} \\
@@ -44,6 +44,49 @@
 \end{enumerate}
 
 \pagebreak
+
+\section*{Problem 1, Programming}
+\begin{lstProgramming}
+The program for part 1 is detailed below.
+\vspace{1mm}
+
+function x = iteratefixed(fun, x, actualRoot, TOL)
+
+\hspace{5mm}fprintf(" i \backslash t \hspace{1mm} xi \hspace{1mm} \backslash t \hspace{1mm} \backslash t\hspace{1mm}  \backslash t \hspace{1mm}  g(xi) \hspace{1mm}  \backslash t \hspace{1mm} \backslash t \hspace{1mm} error \hspace{1mm}  \backslash t \hspace{1mm} \backslash  t \hspace{1mm}\backslash t \hspace{1mm}  error/lastError\backslash n");
+    
+\hspace{5mm}err = 0;
+    
+\hspace{5mm}step = 0;
+
+\hspace{5mm}while abs(x - actualRoot) $>$ TOL
+    
+\hspace{10mm}px = x;
+        
+\hspace{10mm}gx = fun(x);
+        
+\hspace{10mm}lastError = err;
+        
+\hspace{10mm}err = abs(x - actualRoot);
+        
+\hspace{10mm}fprintf("\%2d \%13.9f \%13.9f \%13.9f", step, px, gx, err);
+
+\hspace{10mm}if lastError $>$ 0 $\&$$\&$ err $>$ 0
+        
+\hspace{15mm}fprintf("\%13.9f", err / lastError);
+            
+\hspace{10mm}end
+
+\hspace{15mm}fprintf("\backslash n");
+        
+\hspace{10mm}step = step + 1;
+        
+\hspace{10mm}x = gx;
+        
+\hspace{5mm}end
+
+end
+\pagebreak
+\end{lstProgramming}
 
 \begin{lstlisting}
  i    xi          g(xi)          error        error/lastError
@@ -103,6 +146,7 @@ ans =
 ans =
 
     1.8100
+
 \end{lstlisting}
 
 \pagebreak
@@ -126,6 +170,50 @@ ans =
     \item Plotting \(f\) and looking between \([1, 2]\),  we see that the slope grows exponentially, indicating it has a low multiplicity (ie likely it is a simple root).
 \end{enumerate}
 
+\section*{Problem 2 Programming}
+\begin{lstProgramming}
+The program for part 2 is detailed below.
+\vspace{1mm}
+
+function x = iteratenewtons(fun, dfun, x, actualRoot, TOL)
+
+fprintf(" i \backslash t\hspace{1mm} xi \hspace{1mm}\backslash t\hspace{1mm}\backslash t\hspace{1mm}   error\hspace{1mm} \backslash t\hspace{1mm}\backslash t\hspace{1mm}\backslash t \hspace{1mm}error/lastError^2\backslash n");
+
+\hspace{5mm}err = abs(x - actualRoot);
+
+\hspace{5mm}step = 1;
+
+\hspace{5mm}lastError = 0;
+
+\hspace{5mm}fprintf("\%2d \%13.9f \%13.9f\backslash n", 0, x, err);
+
+\hspace{5mm}while err $>$ TOL
+
+\hspace{10mm}px = x;
+        
+\hspace{10mm}x = px - fun(px) / dfun(px);
+        
+\hspace{10mm}lastError = abs(px - actualRoot);
+        
+\hspace{10mm}err = abs(x - actualRoot);
+        
+\hspace{10mm}fprintf("\%2d \%13.9f \%13.9f ", step, x, err);
+
+\hspace{10mm}if lastError $>$ 0 \&\& err $>$ 0
+
+\hspace{15mm}fprintf("\%13.9f", err / (lastError ^ 2));
+
+\hspace{10mm}end
+
+\hspace{10mm}fprintf("\backslash n");
+
+\hspace{10mm}step = step + 1;
+
+\hspace{5mm}end
+
+end
+
+\end{lstProgramming}
 \begin{lstlisting}
 i 	 xi           error       error/lastError^2
 0   2.000000000   0.469866492
@@ -141,7 +229,8 @@ i 	 xi           error       error/lastError^2
 ans =
 
     1.5301
-\end{lstlisting}
+    
+\end{lstlisting}\pagebreak
 
 \section*{Problem 3}
 \begin{enumerate}[label=(\alph*)]
