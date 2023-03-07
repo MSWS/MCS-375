@@ -2,9 +2,9 @@ f1 = @(x) nthroot(3 * x +1/2, 3);
 f2 = @(x) 1 / (2 * x ^ 2 - 6);
 f3 = f1;
 
-% iteratefixed(f1, -2, -1.641783527452926, 10^(-8))
-% iteratefixed(f2, -1, -0.168254401764093, 10^(-8))
-% iteratefixed(f3, 3, 1.810037929236685, 10^(-8))
+iteratefixed(f1, -2, -1.641783527452926, 10^(-8))
+iteratefixed(f2, -1, -0.168254401764093, 10^(-8))
+iteratefixed(f3, 3, 1.810037929236685, 10^(-8))
 
 fn = @(x) exp(sin(x) ^ 3) +x ^ 6 - 2 * x ^ 4 - x ^ 3 - 1;
 dfn = @(x) (6 * x ^ 3 - 8 * x - 3) * x ^ 2 + 3 * exp(sin(x) ^ 3) * sin(x) ^ 2 * cos(x) ^ 2;
@@ -12,7 +12,7 @@ dfn = @(x) (6 * x ^ 3 - 8 * x - 3) * x ^ 2 + 3 * exp(sin(x) ^ 3) * sin(x) ^ 2 * 
 iteratenewtons(fn, dfn, 2, 1.53013350816662, 10 ^ (-8))
 
 function x = iteratefixed(fun, x, actualRoot, TOL)
-    fprintf(" i \t xi \t\t\t g(xi) \t\t error \t\t\t error/lastError\n");
+    fprintf(" i \t xi \t\t\t g(xi) \t\t error \t\t error/lastError\n");
     err = 0;
     step = 0;
 
@@ -35,7 +35,7 @@ function x = iteratefixed(fun, x, actualRoot, TOL)
 end
 
 function x = iteratenewtons(fun, dfun, x, actualRoot, TOL)
-    fprintf(" i \t xi \t\t   error \t\t\t error/lastError^2\n");
+    fprintf(" i \t xi \t\t   error \t\t (error/lastError)^2\n");
     err = abs(x - actualRoot);
     step = 1;
     lastError = 0;
