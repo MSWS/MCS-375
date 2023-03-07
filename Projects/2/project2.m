@@ -49,7 +49,7 @@ function x = iteratenewtons(fun, dfun, x, actualRoot, TOL)
         fprintf("%2d %13.9f %13.9f ", step, x, err);
 
         if lastError > 0 && err > 0
-            fprintf("%13.9f", err / (lastError ^ 2));
+            fprintf("%13.9f", (err / lastError) ^ 2);
         end
 
         fprintf("\n");
