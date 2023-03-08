@@ -1,0 +1,187 @@
+\documentclass[10pt]{article}
+
+\usepackage[tmargin=0.1in,bmargin=0.25in, lmargin = 0.1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{listings}
+
+\begin{document}
+
+\begin{multicols}{2}
+    \small
+    \begin{minipage}{\columnwidth}
+        \subsection*{Standard vs. Nested Form}
+        \begin{align*}
+            \text{Standard Form: } & a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n \\
+            \text{Nested Form: } & a_0 + x(a_1 + a_2x + \cdots + a_nx^{n-1})
+        \end{align*}
+        \subsection*{Sig Fig Rounding}
+        \tiny
+        4-Digit Example \\
+        \small
+        \begin{tabular}{rl}
+            37.21429 & 37.21 \\
+            0.002271828 & 0.002272 \\
+            3000527.11059 & 3001000 \\
+        \end{tabular}
+        \subsection*{Bit Preciscion}
+        \begin{tabular}{lcccc}
+            & sign & exponent & mantissa & machine \(\epsilon\) \\
+            single & 1 & 8 & 23 & \(2^{-23}\) \\
+            double (default) & 1 & 11 & 52 & \(2^{-52}\) \\
+            long double & 1 & 15 & 64 & \(2^{-64}\)
+        \end{tabular}
+        \begin{multicols}{2}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                sign & mantissa & exponent \\
+                \hline
+            \end{tabular}
+            \\ \\
+            \(\rightarrow 1.b_1b_2 \cdots b_n \times 2^P\)
+        \end{multicols}
+        \subsection*{Error Calculation}
+        \begin{align*}
+            x_e = \text{Exact} & ,\ x_a = \text{Approximate} \\
+            \text{Abs err} & = \left| x_{e} - x_{a} \right| \\
+            \text{Rel err} & = \frac{\left| x_{e} - x_{a} \right|}{x_{e}} \\
+            \text{Worst case error} & = 0.5 \cdot 10^{-P+1}
+        \end{align*}
+        \subsection*{Loss of Significance}
+        \begin{equation*}
+            a - b = \frac{a^2-b^2}{a+b}
+        \end{equation*}
+        \section*{Theorems}
+        \textbf{Intermediate Value Theorem}
+        \begin{equation*}
+            \begin{aligned}
+                & \text{If } f(x) \text{ is continuous on } [a,b] \text{ and } f(a) \neq f(b) \text{,} \\
+                & \text{then for any \(y\) in \([f(a),\ f(b)] \) } \exists\ c \in [a,b] \text{ such that } f(c) = y
+            \end{aligned}
+        \end{equation*}
+        \textbf{Mean Value Theorem}
+        \begin{equation*}
+            \begin{aligned}
+                & \text{If } f'(x) \text{ is continuous on } [a,b] \text{,} \\
+                & \text{then } \exists\ c \in [a,b] \text{ such that } f'(c) = (f(b)-f(a))/(b-a)
+            \end{aligned}
+        \end{equation*}
+        Rolle's Theorem
+        \begin{equation*}
+            \begin{aligned}
+                & \text{If } f'(x) \text{ is continuous on } [a,b] \text{ and } f(a) = f(b) \text{,} \\
+                & \text{then } \exists\ c \in [a,b] \text{ such that } f'(c) = 0
+            \end{aligned}
+        \end{equation*}
+        \subsection*{Taylor Series}
+        \begin{align*}
+            P_k(x) = \sum_{n=0}^k \frac{f^{(n)}(a)}{n!} (x-a)^n \\
+            E_{k+1} = \frac{f^{(k+1)}(c)}{(k + 1)!}  (x-x_0) ^ {k+1}
+        \end{align*}
+    \end{minipage}
+    \begin{minipage}{\columnwidth}
+        \begin{flushright}
+            \subsection*{Methods}
+            \textbf{Bisection Method}
+            \begin{enumerate}
+                \item Choose \(a\), \(b\) such that \(f(a) \cdot f(b) < 0\)
+                \item Compute \(c = \frac{a+b}{2}\)
+                \item If \(f(c)\) and \(f(a)\) have opposite signs, then \(b = c\)
+                \item If \(f(c)\) and \(f(b)\) have opposite signs, then \(a = c\)
+                \item If \(|b - a| < \epsilon\) or \(f(c) = 0\) then \(c\) is the solution
+            \end{enumerate}    
+            \begin{equation*}
+                \begin{aligned}
+                    \text{Error} = \frac{b - a}{2^{n + 1}} & \\ 
+                    \text{Steps(\(\epsilon\))} = \bigl\lceil \frac{\ln(b-a) - \ln(\epsilon)}{\ln(2)}-1 \bigr\rceil &
+                \end{aligned}
+            \end{equation*}
+            \textbf{Newton's Method}
+            \begin{enumerate}
+                \item \(x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\)
+                \item If \(|x_1 - x_0| < \epsilon\) or \(f(x_1) = 0\) then \(x_1\) is the solution
+            \end{enumerate}
+            Multiplicity
+            \begin{equation*}
+                \begin{aligned}
+                    \text{If } f^{(m-1)}(r_0) = 0 \text{ and } f^{(m)}(r_0) \neq 0 \text{,} & \\
+                    \text{then } f^{(m)}(r_0) \text{ is a root of multiplicity } m &
+                \end{aligned}
+            \end{equation*}
+            Convergence
+            \vspace*{-1em}
+            \setlength{\columnsep}{-1in}
+            \begin{multicols}{2}     
+                \begin{minipage}{1in}
+                    \(m = 1\)
+                    \begin{equation*}
+                        \begin{aligned}
+                            & M = \frac{1}{2} \left| \frac{f''(r_0)}{f'(r_0)} \right|  \\
+                            & e_{i+1} \approx Me_i^2 \\
+                        \end{aligned}
+                    \end{equation*}
+                \end{minipage} \\                
+                \begin{minipage}{1in}                    
+                    \(m > 1\)
+                    \begin{equation*}
+                        \begin{aligned}
+                            e_{i+1} \approx \frac{m-1}{m} e_i
+                        \end{aligned}
+                    \end{equation*}
+                \end{minipage}
+            \end{multicols}
+            \textbf{Secant Method}
+            \begin{equation*}
+                x_{n+1} = x_n - f(x_n)\frac{x_n - x_{n-1}}{f(x_n) - f(x_{n-1})}
+            \end{equation*}
+            Convergence
+            \begin{equation*}
+                \begin{aligned}
+                    e_{i+1} \approx Me_i^p & \\
+                    p = \frac{1 + \sqrt{5}}{2} \text{ (Golden Ratio)} &
+                \end{aligned}
+            \end{equation*}
+            \textbf{False Position Method} \\
+            Same as Bisection Method, but 
+            \begin{equation*}
+                c = a - \frac{f(a) (b-a)}{f(b) - f(a)}
+            \end{equation*}
+            Convergence - Generally same as Bisection
+            \textbf{Fixed Point Iteration}
+            \begin{enumerate}
+                \item Solve \(f(x)\) for \(x = g(x)\) \\
+                    \begin{align*}
+                        g(x) = 2.8x - x^2 = x \\
+                        1.8x -x^2 = 0 \\
+                        x(1.8 - x) = 0 \\
+                        x = 0, 1.8
+                    \end{align*}
+                    \begin{align*}
+                        f(x) = 2x^3 - 6x - 1 \\
+                        g(x) = \frac{2x^3-1}{6}
+                    \end{align*}
+                \item If \(|g'(r_n)| < 1\), fixed point will converge to \(r_n\)
+            \end{enumerate}
+        \end{flushright}
+    \end{minipage}
+\end{multicols}
+
+\begin{multicols}{2}
+    \begin{minipage}{\columnwidth}
+        \subsection*{Matrix}
+        \begin{description}
+            \item[Gaussian Elimination] \(O(\frac{2n^3}{3})\)
+            \item[Back Substitution] \(O(n^2)\)
+            \item[LU Factorization] Gaussian + 2 * Back Sub
+        \end{description}
+    \end{minipage}
+    \begin{minipage}{\columnwidth}
+        \section*{LU Factorization on back}
+    \end{minipage}
+\end{multicols}
+
+
+
+\end{document}
