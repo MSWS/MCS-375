@@ -10,6 +10,13 @@
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
     \node[shape=circle,draw,inner sep=0.5pt] (char) {#1};}}
 
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+    \hskip -\arraycolsep
+    \let\@ifnextchar\new@ifnextchar
+    \array{#1}}
+\makeatother
+
 \begin{document}
 
 \begin{multicols}{2}
@@ -17,24 +24,24 @@
     \begin{minipage}{\columnwidth}
         \subsection*{Standard vs. Nested Form}
         \begin{align*}
-            \text{Standard Form: } & a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n \\
-            \text{Nested Form: } & a_0 + x(a_1 + a_2x + \cdots + a_nx^{n-1})
+            \text{Standard Form: } & a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n  \\
+            \text{Nested Form: }   & a_0 + x(a_1 + a_2x + \cdots + a_nx^{n-1})
         \end{align*}
         \subsection*{Sig Fig Rounding}
         \tiny
         4-Digit Example \\
         \small
         \begin{tabular}{rl}
-            37.21429 & 37.21 \\
-            0.002271828 & 0.002272 \\
-            3000527.11059 & 3001000 \\
+            37.21429      & 37.21    \\
+            0.002271828   & 0.002272 \\
+            3000527.11059 & 3001000  \\
         \end{tabular}
         \subsection*{Bit Preciscion}
         \begin{tabular}{lcccc}
-            & sign & exponent & mantissa & machine \(\epsilon\) \\
-            single & 1 & 8 & 23 & \(2^{-23}\) \\
-            double (default) & 1 & 11 & 52 & \(2^{-52}\) \\
-            long double & 1 & 15 & 64 & \(2^{-64}\)
+                             & sign & exponent & mantissa & machine \(\epsilon\) \\
+            single           & 1    & 8        & 23       & \(2^{-23}\)          \\
+            double (default) & 1    & 11       & 52       & \(2^{-52}\)          \\
+            long double      & 1    & 15       & 64       & \(2^{-64}\)
         \end{tabular}
         \begin{multicols}{2}
             \begin{tabular}{|c|c|c|}
@@ -47,9 +54,9 @@
         \end{multicols}
         \subsection*{Error Calculation}
         \begin{align*}
-            x_e = \text{Exact} & ,\ x_a = \text{Approximate} \\
-            \text{Abs err} & = \left| x_{e} - x_{a} \right| \\
-            \text{Rel err} & = \frac{\left| x_{e} - x_{a} \right|}{x_{e}} \\
+            x_e = \text{Exact}      & ,\ x_a = \text{Approximate}                  \\
+            \text{Abs err}          & = \left| x_{e} - x_{a} \right|               \\
+            \text{Rel err}          & = \frac{\left| x_{e} - x_{a} \right|}{x_{e}} \\
             \text{Worst case error} & = 0.5 \cdot 10^{-P+1}
         \end{align*}
         \subsection*{Loss of Significance}
@@ -60,27 +67,27 @@
         \textbf{Intermediate Value Theorem}
         \begin{equation*}
             \begin{aligned}
-                & \text{If } f(x) \text{ is continuous on } [a,b] \text{ and } f(a) \neq f(b) \text{,} \\
-                & \text{then for any \(y\) in \([f(a),\ f(b)] \) } \exists\ c \in [a,b] \text{ such that } f(c) = y
+                 & \text{If } f(x) \text{ is continuous on } [a,b] \text{ and } f(a) \neq f(b) \text{,}              \\
+                 & \text{then for any \(y\) in \([f(a),\ f(b)] \) } \exists\ c \in [a,b] \text{ such that } f(c) = y
             \end{aligned}
         \end{equation*}
         \textbf{Mean Value Theorem}
         \begin{equation*}
             \begin{aligned}
-                & \text{If } f'(x) \text{ is continuous on } [a,b] \text{,} \\
-                & \text{then } \exists\ c \in [a,b] \text{ such that } f'(c) = (f(b)-f(a))/(b-a)
+                 & \text{If } f'(x) \text{ is continuous on } [a,b] \text{,}                      \\
+                 & \text{then } \exists\ c \in [a,b] \text{ such that } f'(c) = (f(b)-f(a))/(b-a)
             \end{aligned}
         \end{equation*}
         \textbf{Rolle's Theorem}
         \begin{equation*}
             \begin{aligned}
-                & \text{If } f'(x) \text{ is continuous on } [a,b] \text{ and } f(a) = f(b) \text{,} \\
-                & \text{then } \exists\ c \in [a,b] \text{ such that } f'(c) = 0
+                 & \text{If } f'(x) \text{ is continuous on } [a,b] \text{ and } f(a) = f(b) \text{,} \\
+                 & \text{then } \exists\ c \in [a,b] \text{ such that } f'(c) = 0
             \end{aligned}
         \end{equation*}
         \subsection*{Taylor Series}
         \begin{align*}
-            P_k(x) = \sum_{n=0}^k \frac{f^{(n)}(a)}{n!} (x-a)^n \\
+            P_k(x) = \sum_{n=0}^k \frac{f^{(n)}(x_0)}{n!} (x-x_0)^n \\
             E_{k+1} = \frac{f^{(k+1)}(c)}{(k + 1)!}  (x-x_0) ^ {k+1}
         \end{align*}
     \end{minipage}
@@ -94,39 +101,39 @@
                 \item If \(f(c)\) and \(f(a)\) have opposite signs, then \(b = c\)
                 \item If \(f(c)\) and \(f(b)\) have opposite signs, then \(a = c\)
                 \item If \(|b - a| < \epsilon\) or \(f(c) = 0\) then \(c\) is the solution
-            \end{enumerate}    
+            \end{enumerate}
             \begin{equation*}
                 \begin{aligned}
-                    \text{Error} = \frac{b - a}{2^{n + 1}} & \\ 
+                    \text{Error} = \frac{b - a}{2^{n + 1}}                                                         & \\
                     \text{Steps(\(\epsilon\))} = \bigl\lceil \frac{\ln(b-a) - \ln(\epsilon)}{\ln(2)}-1 \bigr\rceil &
                 \end{aligned}
             \end{equation*}
             \textbf{Newton's Method}
             \begin{enumerate}
                 \item \(x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\)
-                \item If \(|x_1 - x_0| < \epsilon\) or \(f(x_1) = 0\) then \(x_1\) is the solution
+                \item If \(|x_n - x_{n-1}| < \epsilon\) or \(f(x_n) = 0\) then \(x_n\) is the solution
             \end{enumerate}
             Multiplicity
             \begin{equation*}
                 \begin{aligned}
                     \text{If } f^{(m-1)}(r_0) = 0 \text{ and } f^{(m)}(r_0) \neq 0 \text{,} & \\
-                    \text{then } f^{(m)}(r_0) \text{ is a root of multiplicity } m &
+                    \text{then } f^{(m)}(r_0) \text{ is a root of multiplicity } m          &
                 \end{aligned}
             \end{equation*}
             Convergence
             \vspace*{-1em}
             \setlength{\columnsep}{-1in}
-            \begin{multicols}{2}     
+            \begin{multicols}{2}
                 \begin{minipage}{1in}
                     \(m = 1\)
                     \begin{equation*}
                         \begin{aligned}
-                            & M = \frac{1}{2} \left| \frac{f''(r_0)}{f'(r_0)} \right|  \\
-                            & e_{i+1} \approx Me_i^2 \\
+                             & M = \frac{1}{2} \left| \frac{f''(r_0)}{f'(r_0)} \right| \\
+                             & e_{i+1} \approx Me_i^2                                  \\
                         \end{aligned}
                     \end{equation*}
-                \end{minipage} \\                
-                \begin{minipage}{1in}                    
+                \end{minipage} \\
+                \begin{minipage}{1in}
                     \(m > 1\)
                     \begin{equation*}
                         \begin{aligned}
@@ -142,12 +149,12 @@
             Convergence
             \begin{equation*}
                 \begin{aligned}
-                    e_{i+1} \approx Me_i^p & \\
+                    e_{i+1} \approx Me_i^p                            & \\
                     p = \frac{1 + \sqrt{5}}{2} \text{ (Golden Ratio)} &
                 \end{aligned}
             \end{equation*}
             \textbf{False Position Method} \\
-            Same as Bisection Method, but 
+            Same as Bisection Method, but
             \begin{equation*}
                 c = a - \frac{f(a) (b-a)}{f(b) - f(a)}
             \end{equation*}
@@ -155,16 +162,16 @@
             \textbf{Fixed Point Iteration}
             \begin{enumerate}
                 \item Solve \(f(x)\) for \(x = g(x)\) \\
-                    \begin{align*}
-                        g(x) = 2.8x - x^2 = x \\
-                        1.8x -x^2 = 0 \\
-                        x(1.8 - x) = 0 \\
-                        x = 0, 1.8
-                    \end{align*}
-                    \begin{align*}
-                        f(x) = 2x^3 - 6x - 1 \\
-                        g(x) = \frac{2x^3-1}{6}
-                    \end{align*}
+                      \begin{align*}
+                          g(x) = 2.8x - x^2 = x \\
+                          1.8x -x^2 = 0         \\
+                          x(1.8 - x) = 0        \\
+                          x = 0, 1.8
+                      \end{align*}
+                      \begin{align*}
+                          f(x) = 2x^3 - 6x - 1 \\
+                          g(x) = \frac{2x^3-1}{6}
+                      \end{align*}
                 \item If \(|g'(r_n)| < 1\), fixed point will converge to \(r_n\)
             \end{enumerate}
         \end{flushright}
@@ -194,8 +201,8 @@
             \vspace*{-2em}
             \begin{equation*}
                 \begin{aligned}
-                    & \sum_{i=1}^{n} i = \frac{n(n+1)}{2} & \\
-                    & \sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6} & \\
+                     & \sum_{i=1}^{n} i = \frac{n(n+1)}{2}         & \\
+                     & \sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6} & \\
                 \end{aligned}
             \end{equation*}
             \columnbreak
@@ -222,30 +229,30 @@
 
 \begin{multicols}{2}
     \begin{minipage}{\columnwidth}
-    \subsection*{LU Factorization}
-    Goal: \(A = LU \rightarrow A\overrightarrow{x} = \overrightarrow{b} \) \\
-    \textbf{Slow Method}
-    \begin{enumerate}
-        \item Row reduce \(A\), recording operations as elementary matrices
-        \item The row reduced \(A\) is now \(U\)
-        \item You now have \(E_n E_{n-1} \cdots E_2 E_1 A = LU\)
-        \item Invert the elementary matricies to find L
-        \item \(L = (E_n E_{n-1} \cdots E_2 E_1) ^ {-1}\)
-    \end{enumerate}
+        \subsection*{LU Factorization}
+        Goal: \(A = LU \rightarrow A\overrightarrow{x} = \overrightarrow{b} \) \\
+        \textbf{Slow Method}
+        \begin{enumerate}
+            \item Row reduce \(A\), recording operations as elementary matrices
+            \item The row reduced \(A\) is now \(U\)
+            \item You now have \(E_n E_{n-1} \cdots E_2 E_1 A = LU\)
+            \item Invert the elementary matricies to find L
+            \item \(L = (E_n E_{n-1} \cdots E_2 E_1) ^ {-1}\)
+        \end{enumerate}
 
-    Example
-    \begin{minipage}{0.5\linewidth}
-        \[
-            A = \begin{bmatrix}
-                1 & 2 & -1 \\
-                2 & 1 & -2 \\
-                -3 & 1 & 1
-            \end{bmatrix}
-        \]
-        \[
+        Example
+        \begin{minipage}{0.5\linewidth}
+            \[
+                A = \begin{bmatrix}
+                    1  & 2 & -1 \\
+                    2  & 1 & -2 \\
+                    -3 & 1 & 1
+                \end{bmatrix}
+            \]
+            \[
                 \begin{bmatrix}
-                    1 & 0 & 0 \\
-                    0 & 1 & 0 \\
+                    1 & 0            & 0 \\
+                    0 & 1            & 0 \\
                     0 & -\frac{7}{3} & 1
                 \end{bmatrix}
                 \begin{bmatrix}
@@ -254,88 +261,196 @@
                     3 & 0 & 1
                 \end{bmatrix}
                 \begin{bmatrix}
-                    1 & 0 & 0 \\
+                    1  & 0 & 0 \\
                     -2 & 1 & 0 \\
-                    0 & 0 & 1
+                    0  & 0 & 1
                 \end{bmatrix}
-        \]
-        \begin{center}  
-            \(e_3 \quad\quad\quad\quad e_2 \quad\quad\quad\quad e_1\)
-        \end{center}
+            \]
+            \begin{center}
+                \(e_3 \quad\quad\quad\quad e_2 \quad\quad\quad\quad e_1\)
+            \end{center}
 
-        \begin{align*}
-            E_3 E_2 E_1 A = U \\
-            A = E_1^{-1} E_2^{-1} E_3^{-1} U \\
-            = (E_3 E_2 E_1)^{-1} U \\
-            A = LU = \begin{bmatrix}
-                1 & 0 & 0 \\
-                2 & 1 & 0 \\
-                -3 & -\frac{7}{3} & 1
-            \end{bmatrix}
-            \begin{bmatrix}
-                1 & 2 & -1 \\
-                0 & -3 & 0 \\
-                0 & 0 & -2
-            \end{bmatrix}
-        \end{align*}
-    \end{minipage} \\
-    \textbf{Fast Method}
-    \begin{enumerate}
-        \item Apply pivots internally within \(A\)
-        \item Note that you will subtract rather than add with these operations
-    \end{enumerate}
+            \begin{align*}
+                E_3 E_2 E_1 A = U                \\
+                A = E_1^{-1} E_2^{-1} E_3^{-1} U \\
+                = (E_3 E_2 E_1)^{-1} U           \\
+                A = LU = \begin{bmatrix}
+                             1  & 0            & 0 \\
+                             2  & 1            & 0 \\
+                             -3 & -\frac{7}{3} & 1
+                         \end{bmatrix}
+                \begin{bmatrix}
+                    1 & 2  & -1 \\
+                    0 & -3 & 0  \\
+                    0 & 0  & -2
+                \end{bmatrix}
+            \end{align*}
+        \end{minipage} \\
+        \textbf{Fast Method}
+        \begin{enumerate}
+            \item Apply pivots internally within \(A\)
+            \item Note that you will subtract rather than add with these operations
+        \end{enumerate}
 
-    \begin{minipage}{0.5\linewidth}
-        \begin{align}
-            \begin{bmatrix}
-                1 & 2 & -1 \\
-                2 & 1 & -2 \\
-                -3 & 1 & 1
-            \end{bmatrix} \\
-            \begin{bmatrix}
-                1 & 2 & -1 \\
-                \circled{\(\frac{2}{1}\)} & -3 & 0 \\
-                \circled{\(-\frac{3}{1}\)} & -7 & -2
-            \end{bmatrix}
-        \end{align}
-    \end{minipage}
-    \begin{enumerate}[resume]
-        \item Don't forget to recurse through the inner matrix (row 2 and beyond)
-    \end{enumerate}
-    \begin{minipage}{0.5\linewidth}
-        \begin{align}
-            \begin{bmatrix}
-                1 & 2 & -1 \\
-                \circled{\(\frac{2}{1}\)} & -3 & 0 \\
-                \circled{\(-\frac{3}{1}\)} & \circled{\(\frac{7}{3}\)} & -2
-            \end{bmatrix}
-        \end{align}
-    \end{minipage}
-    \begin{enumerate}[resume]
-        \item The circled (lower triangular) elements are now \(L\) (plus the identity matrix)
-        \item The remaining upper triangular elements are \(U\)
-    \end{enumerate}
-\end{minipage}
-
-\begin{minipage}{0.95\columnwidth}
-    \subsection*{PA = LU Factorization}
-    Goal: \(PA = LU \rightarrow A\overrightarrow{x} = \overrightarrow{b}\) \\
-    \begin{enumerate}
-        \item Same logic as LU, but move the \(|\)biggest\(|\) element to the top of the column
-        \item Make sure you do the same for inner matricies
-        \item You'll have multiple \(P\) matrices, such that
+        \begin{minipage}{0.5\linewidth}
+            \begin{align}
+                \begin{bmatrix}
+                    1  & 2 & -1 \\
+                    2  & 1 & -2 \\
+                    -3 & 1 & 1
+                \end{bmatrix} \\
+                \begin{bmatrix}
+                    1                          & 2  & -1 \\
+                    \circled{\(\frac{2}{1}\)}  & -3 & 0  \\
+                    \circled{\(-\frac{3}{1}\)} & -7 & -2
+                \end{bmatrix}
+            \end{align}
+        \end{minipage}
+        \begin{enumerate}[resume]
+            \item Don't forget to recurse through the inner matrix (row 2 and beyond)
+        \end{enumerate}
+        \begin{minipage}{0.5\linewidth}
+            \begin{align}
+                \begin{bmatrix}
+                    1                          & 2                         & -1 \\
+                    \circled{\(\frac{2}{1}\)}  & -3                        & 0  \\
+                    \circled{\(-\frac{3}{1}\)} & \circled{\(\frac{7}{3}\)} & -2
+                \end{bmatrix}
+            \end{align}
+        \end{minipage}
+        \begin{enumerate}[resume]
+            \item The circled (lower triangular) elements are now \(L\) (plus the identity matrix)
+            \item The remaining upper triangular elements are \(U\)
+        \end{enumerate}
+        \subsection*{Derivatives}
+        \small
         \begin{equation*}
-            PA = LU
+            \begin{aligned}
+                \frac{df}{dx} f(g(x)) = f'(g(x))g'(x) & \quad \frac{d}{dx} ax^n = nax^{n-1} & \frac{d}{dx} ln_a(x) = \frac{1}{xln(a)} \\
+                \frac{d}{dx} a^x = \ln(a) a^x         & \quad \frac{d}{dx} sin(x) = cos(x)  & \frac{d}{dx} cos(x) = sin(x)            \\
+            \end{aligned}
         \end{equation*}
-        \item Make sure you apply \(P\) when solving for \(\overrightarrow{x}\)
-    \end{enumerate}
+    \end{minipage}
 
-    \subsection*{Solving}
-    \begin{enumerate}
-        \item Solve \(L\overrightarrow{y} = \overrightarrow{b}\) for \(\overrightarrow{y}\)
-        \item Solve \(U\overrightarrow{x} = \overrightarrow{y}\) for \(\overrightarrow{x}\)
-    \end{enumerate}
-\end{minipage}
+    \begin{minipage}{0.95\columnwidth}
+        \subsection*{PA = LU Factorization}
+        Goal: \(PA = LU \rightarrow A\overrightarrow{x} = \overrightarrow{b}\) \\
+        \begin{enumerate}
+            \item Same logic as LU, but move the \(|\)biggest\(|\) element to the top of the column
+            \item Make sure you do the same for inner matrices
+            \item You'll have multiple \(P\) matrices, such that
+                  \begin{equation*}
+                      PA = LU
+                  \end{equation*}
+            \item Make sure you apply \(P\) when solving for \(\overrightarrow{x}\)
+        \end{enumerate}
+
+        \subsection*{Solving}
+        \begin{enumerate}
+            \item Solve \(L\overrightarrow{y} = \overrightarrow{b}\) for \(\overrightarrow{y}\)
+            \item Solve \(U\overrightarrow{x} = \overrightarrow{y}\) for \(\overrightarrow{x}\)
+        \end{enumerate}
+        \vspace{1em}
+        Example 1: \(A = LU\)
+        \begin{equation*}
+            \text{Let } \overrightarrow{b} = \begin{bmatrix}
+                2 \\
+                1 \\
+                -1
+            \end{bmatrix}
+        \end{equation*}
+
+        \begin{enumerate}
+            \item \(L\overrightarrow{y} = \overrightarrow{b}\) \begin{equation*}
+                      \begin{bmatrix}[ccc|c]
+                          1  & 0            & 0 & 2  \\
+                          2  & 1            & 0 & 1  \\
+                          -3 & -\frac{7}{3} & 1 & -1
+                      \end{bmatrix}
+                      \rightarrow
+                      \overrightarrow{y} = \begin{pmatrix}
+                          2  \\
+                          -3 \\
+                          -2
+                      \end{pmatrix}
+                  \end{equation*}
+            \item \(U \overrightarrow{x} = \overrightarrow{y}\) \begin{equation*}
+                      \begin{bmatrix}[ccc|c]
+                          1 & 2  & -1 & 2  \\
+                          0 & -3 & 0  & -3 \\
+                          0 & 0  & -2 & -2
+                      \end{bmatrix}
+                      \rightarrow \overrightarrow{x} = \begin{pmatrix}
+                          1 \\
+                          1 \\
+                          1
+                      \end{pmatrix}
+                  \end{equation*}
+        \end{enumerate}
+
+        Example 2: - \(PA = LU\)
+        \begin{equation*}
+            \text{Let } \overrightarrow{b} = \begin{bmatrix}
+                1 \\
+                2 \\
+                3
+            \end{bmatrix}
+            \text{ and } A = \begin{bmatrix}
+                2 & 1 & 5  \\
+                4 & 4 & -4 \\
+                1 & 3 & 1
+            \end{bmatrix}
+        \end{equation*}
+        \begin{enumerate}
+            \item Find \(P\) such that \(A\)'s pivots are the largest in magnitude per column. \\
+                  \footnotesize In this instance:
+                  \begin{equation*}
+                      P = P_2 P_1
+                      \begin{bmatrix}
+                          1 & 0 & 0 \\
+                          0 & 0 & 1 \\
+                          0 & 1 & 0
+                      \end{bmatrix}
+                      \begin{bmatrix}
+                          0 & 1 & 0 \\
+                          1 & 0 & 0 \\
+                          0 & 0 & 1
+                      \end{bmatrix}
+                      = \begin{bmatrix}
+                          0 & 1 & 0 \\
+                          0 & 0 & 1 \\
+                          1 & 0 & 0
+                      \end{bmatrix}
+                  \end{equation*}
+                  \normalsize
+            \item \(L \overrightarrow{y} = P\overrightarrow{b}\)
+                  \begin{equation*}
+                      \begin{bmatrix}[ccc|c]
+                          1           & 0            & 0 & 0 \\
+                          \frac{1}{4} & 1            & 0 & 6 \\
+                          \frac{1}{2} & -\frac{1}{2} & 1 & 5
+                      \end{bmatrix}
+                      \rightarrow \overrightarrow{y} = \begin{pmatrix}
+                          0 \\
+                          6 \\
+                          8
+                      \end{pmatrix}
+                  \end{equation*}
+            \item \(U \overrightarrow{x} = \overrightarrow{y}\)
+                  \begin{equation*}
+                      \begin{bmatrix}[ccc|c]
+                          4 & 4 & -4 & 0 \\
+                          0 & 2 & 2  & 6 \\
+                          0 & 0 & 8  & 8
+                      \end{bmatrix}
+                      \rightarrow \overrightarrow{x} = \begin{pmatrix}
+                          -1 \\
+                          2  \\
+                          1
+                      \end{pmatrix}
+                  \end{equation*}
+        \end{enumerate}
+    \end{minipage}
 \end{multicols}
 
 \end{document}
