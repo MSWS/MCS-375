@@ -1,6 +1,6 @@
 \documentclass[10pt]{article}
 
-\usepackage[tmargin=0.1in, bmargin=0.25in, lmargin = 0.1in, rmargin = 0.1in]{geometry}
+\usepackage[tmargin=0.1in, bmargin=0.25in, lmargin = 0.1in, rmargin = 0.25in]{geometry}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{enumitem}
 \usepackage{multicol}
@@ -198,8 +198,8 @@
                     & \sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6} & \\
                 \end{aligned}
             \end{equation*}
-            \columnbreak \\
-            \vspace*{-2em}
+            \columnbreak
+            \vspace*{-2.0em}
             \begin{equation*}
                 \begin{aligned}
                     \sum_{i=1}^{n+5}{(k-1)} = \sum_{i=1}^{n+4} j & = \frac{(n+4)(n+5)}{2} & \\
@@ -208,7 +208,10 @@
         \end{multicols}
     \end{minipage}
 
-    \begin{minipage}{\columnwidth}
+    \begin{minipage}{1.5\columnwidth}
+        \begin{center}
+            Complexity Ratio
+        \end{center}
         \begin{equation*}
             \frac{s_b^2}{2\cdot s_e^3 / 3} = \frac{t_b}{t_e}
         \end{equation*}
