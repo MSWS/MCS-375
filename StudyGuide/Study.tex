@@ -1,6 +1,6 @@
 \documentclass[10pt]{article}
 
-\usepackage[tmargin=0.1in,bmargin=0.25in, lmargin = 0.1in]{geometry}
+\usepackage[tmargin=0.1in, bmargin=0.25in, lmargin = 0.1in, rmargin = 0.1in]{geometry}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{enumitem}
 \usepackage{tikz}
@@ -68,7 +68,7 @@
                 & \text{then } \exists\ c \in [a,b] \text{ such that } f'(c) = (f(b)-f(a))/(b-a)
             \end{aligned}
         \end{equation*}
-        Rolle's Theorem
+        \textbf{Rolle's Theorem}
         \begin{equation*}
             \begin{aligned}
                 & \text{If } f'(x) \text{ is continuous on } [a,b] \text{ and } f(a) = f(b) \text{,} \\
@@ -148,7 +148,7 @@
             \begin{equation*}
                 c = a - \frac{f(a) (b-a)}{f(b) - f(a)}
             \end{equation*}
-            Convergence - Generally same as Bisection
+            Convergence - Generally same as Bisection \\
             \textbf{Fixed Point Iteration}
             \begin{enumerate}
                 \item Solve \(f(x)\) for \(x = g(x)\) \\
@@ -168,20 +168,52 @@
     \end{minipage}
 \end{multicols}
 
-\begin{multicols}{2}
+\begin{center}
+    \rule{4in}{1pt}
+\end{center}
+
+\vspace{-1.5em}
+
+\begin{multicols}{3}
     \begin{minipage}{\columnwidth}
         \subsection*{Matrix}
         \begin{description}
             \item[Gaussian Elimination] \(O(\frac{2n^3}{3})\)
             \item[Back Substitution] \(O(n^2)\)
-            \item[LU Factorization] Gaussian + 2 * Back Sub
+            \item[LU Fact.] Gaussian + 2 * Back Sub
         \end{description}
     \end{minipage}
+
     \begin{minipage}{\columnwidth}
-        \section*{LU Factorization on back}
+        \subsection*{Summations}
+        % \setlength{\columnsep}{0in}
+        \begin{multicols}{2}
+            \vspace*{-2em}
+            \begin{equation*}
+                \begin{aligned}
+                    & \sum_{i=1}^{n} i = \frac{n(n+1)}{2} & \\
+                    & \sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6} & \\
+                \end{aligned}
+            \end{equation*}
+            \columnbreak \\
+            \vspace*{-2em}
+            \begin{equation*}
+                \begin{aligned}
+                    \sum_{i=1}^{n+5}{(k-1)} = \sum_{i=1}^{n+4} j & = \frac{(n+4)(n+5)}{2} & \\
+                \end{aligned}
+            \end{equation*}
+        \end{multicols}
+    \end{minipage}
+
+    \begin{minipage}{\columnwidth}
+        \begin{equation*}
+            \frac{s_b^2}{2\cdot s_e^3 / 3} = \frac{t_b}{t_e}
+        \end{equation*}
     \end{minipage}
 \end{multicols}
 
+\pagebreak
 
+Second page sheeeeeeeeeeeeesh
 
 \end{document}
