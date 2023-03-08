@@ -214,6 +214,68 @@
 
 \pagebreak
 
-Second page sheeeeeeeeeeeeesh
+\subsection*{LU Factorization}
+Goal: A = LU \\
+\textbf{Slow Method}
+\begin{enumerate}
+    \item Row reduce \(A\), recording operations as elementary matrices
+    \item The row reduced \(A\) is now \(U\)
+    \item You now have \(E_n E_{n-1} \cdots E_2 E_1 A = LU\)
+    \item Invert the elementary matricies to find L
+    \item \(L = (E_n E_{n-1} \cdots E_2 E_1) ^ {-1}\)
+\end{enumerate}
+
+Example
+\begin{minipage}{0.5\linewidth}
+    \[
+        A = \begin{bmatrix}
+            1 & 2 & -1 \\
+            2 & 1 & -2 \\
+            -3 & 1 & 1
+        \end{bmatrix}
+    \]
+    \[
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & -\frac{7}{3} & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 1 & 0 \\
+                3 & 0 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                -2 & 1 & 0 \\
+                0 & 0 & 1
+            \end{bmatrix}
+    \]
+    \begin{center}  
+        \(e_3 \quad\quad\quad\quad e_2 \quad\quad\quad\quad e_1\)
+    \end{center}
+
+    \begin{align*}
+        E_3 E_2 E_1 A = U \\
+        A = E_1^{-1} E_2^{-1} E_3^{-1} U \\
+        = (E_3 E_2 E_1)^{-1} U \\
+        A = LU = \begin{bmatrix}
+            1 & 0 & 0 \\
+            2 & 1 & 0 \\
+            -3 & -\frac{7}{3} & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 2 & -1 \\
+            0 & -3 & 0 \\
+            0 & 0 & -2
+        \end{bmatrix}
+    \end{align*}
+\end{minipage}
+
+\textbf{Fast Method}
+\begin{enumerate}
+    \item Do that shit in one step
+\end{enumerate}
+
 
 \end{document}
