@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage[tmargin=0.5in,bmargin=0.25in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=0.5pt] (char) {#1};}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+    \hskip -\arraycolsep
+    \let\@ifnextchar\new@ifnextchar
+    \array{#1}}
+\makeatother
+
+\title{\vspace{-5ex}M/CS 375 HW 15}
+\author{Isaac Boaz}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 4}
+Solve the system by finding the LU factorization and then carrying out the two-step back substitution.
+\begin{align*}
+    \begin{bmatrix}
+        4 & 2 & 0 \\
+        4& 4 & 2 \\
+        2 & 2 & 3
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1 \\
+        x_2 \\
+        x_3
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        2 \\
+        4 \\
+        6
+    \end{bmatrix}
+\end{align*}
+
+\begin{align}
+    \begin{bmatrix}
+        4 & 2 & 0 \\
+        \circled{\(1\)} & 4 & 2 \\
+        \circled{\(\frac{1}{2}\)} & 2 & 3
+    \end{bmatrix} \\
+    \begin{bmatrix}
+        4 & 2 & 0 \\
+        \circled{\(1\)} & 2 & 2 \\
+        \circled{\(\frac{1}{2}\)} & \circled{\(\frac{1}{2}\)} & 2
+    \end{bmatrix} \\
+    L = \begin{bmatrix}
+        1 & 0 & 0 \\
+        \circled{\(\frac{1}{4}\)} & 1 & 0 \\
+        \circled{\(\frac{1}{2}\)} & \circled{\(\frac{1}{2}\)} & 1
+    \end{bmatrix} & \quad
+    U = \begin{bmatrix}
+        4 & 2 & 0 \\
+        0 & 2 & 2 \\
+        0 & 0 & 2
+    \end{bmatrix}
+\end{align}
+\begin{align}
+    \begin{bmatrix}[ccc|c]
+        1 & 0 & 0 & 2 \\
+        1 & 1 & 0 & 4 \\
+        \frac{1}{2} & \frac{1}{2} & 1 & 6
+    \end{bmatrix}
+    \rightarrow
+    \overrightarrow{y} = \begin{bmatrix}
+        2 \\
+        2 \\
+        4
+    \end{bmatrix} \\
+    \begin{bmatrix}[ccc|c]
+        4 & 2 & 0 & 2\\
+        0 & 2 & 2 & 2\\
+        0 & 0 & 2 & 4
+    \end{bmatrix}
+    \rightarrow
+    \overrightarrow{x} = \begin{bmatrix}
+        1 \\
+        -1 \\
+        2
+    \end{bmatrix}
+\end{align}
+
+\end{document}
